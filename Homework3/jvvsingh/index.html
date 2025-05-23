@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Science Salaries Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <div class="title-center">
+    <h1>Data Science Salaries Dashboard</h1>
+  </div>
+  <div class="year-selector">
+    <strong></strong>
+    <span id="year-buttons"></span>
+  </div>
+  <div class="instructions">
+    <strong>Instructions:</strong>
+    <ul>
+      <li><b>Click</b>: A bar in the bar chart to select a job title and highlight it across all charts. The line chart will show only that job title's salary trend.</li>
+      <li><b>Drag</b>: In the scatter plot to select a group of data points (brushing). Selected points and corresponding bars/lines are highlighted.</li>
+      <li><b>Click</b>: A year above or a dot in the line chart to update all charts to that year.</li>
+      <li><b>Click</b>: A colored area in the stream graph or a line in the parallel coordinates to select a job title and update all charts.</li>
+      <li><b>Hover</b>: Over any chart element for details. Charts animate on update.</li>
+    </ul>
+  </div>
+  <div id="dashboard">
+    <div class="chart-container">
+      <h2>Bar Chart: Average Salary by Job Title (by Year)</h2>
+      <div class="subtitle">Bar color: Salary in USD. X: Job Title, Y: Average Salary, Animated by Year.</div>
+      <svg id="bar-chart" viewBox="0 0 700 400" preserveAspectRatio="xMinYMin meet"></svg>
+    </div>
+    <div class="chart-container">
+      <h2>Scatter Plot: Salary (USD) vs. Experience Level (by Year)</h2>
+      <div class="subtitle">X: Experience Level, Y: Salary (USD), Animated by Year. Drag to brush.</div>
+      <svg id="scatter-plot" viewBox="0 0 700 350" preserveAspectRatio="xMinYMin meet"></svg>
+      <div id="scatter-legend" class="scatter-legend"></div>
+    </div>
+    <div class="chart-container">
+      <h2>Parallel Coordinates: Salary, Remote Ratio, Experience, Company Location</h2>
+      <div class="subtitle">Each line: one record. Axes: Salary, Remote Ratio, Experience Level, Company Location.</div>
+      <svg id="parallel-coords" viewBox="0 0 700 350" preserveAspectRatio="xMinYMin meet"></svg>
+      <div id="parallel-legend"></div>
+    </div>
+    <div class="chart-container">
+      <h2>Line &amp; Area Chart: Average Salary by Year</h2>
+      <div class="subtitle">X: Year, Y: Average Salary. Area and line both show average salary trend or selected job title. Dot color = year. Click a dot to select a year.</div>
+      <svg id="line-area-chart" viewBox="0 0 700 350" preserveAspectRatio="xMinYMin meet"></svg>
+      <div id="linearea-legend" class="linearea-legend"></div>
+    </div>
+    <div class="chart-container stream-container">
+      <h2>Stream Graph: Job Titles Over Time</h2>
+      <div class="subtitle">Each color: a job title. X: Year, Y: Count. Click an area to select a job title.</div>
+      <div class="stream-chart-wrapper">
+        <svg id="stream-graph" viewBox="0 0 770 385" preserveAspectRatio="xMinYMin meet"></svg>
+        <div id="stream-legend"></div>
+      </div>
+    </div>
+  </div>
+  <div id="tooltip" class="hidden"></div>
+  <script src="script.js"></script>
+</body>
+</html>
